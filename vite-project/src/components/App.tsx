@@ -6,7 +6,12 @@ function App() {
 
   return (
     <>
-<Form data={[]} />
+
+<Form data={{firstName:"",
+lastName:"",
+email:"",
+password:"",
+confirmPassword:""}} />
     </>
   )
 }
