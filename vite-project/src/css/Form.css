@@ -76,7 +76,7 @@
 .eye-button {
   position: absolute;
   top: 50%;
-  left: 60%;
+  left: 64%;
 margin: none !important;
   transform: translateY(-50%);
   background: none !important;
@@ -84,4 +84,7 @@ margin: none !important;
   border: none;
   cursor: pointer;
   padding: 5px;
+}
+.lucide{
+width: 16px;;
 }
