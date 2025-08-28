@@ -60,3 +60,28 @@
     .form-container button:hover {
       background: #0056b3;
     }
+    .form-container input#password{
+     padding-right: 40px;
+    }
+.password-wrapper {
+  position: relative; 
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; 
+}
+ 
+.eye-button {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+margin: none !important;
+  transform: translateY(-50%);
+  background: none !important;
+  color:#ccc !important;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}

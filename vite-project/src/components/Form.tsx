@@ -3,13 +3,16 @@ import type { IFormData } from "../type"
 import '../css/Form.css'
 import { InputField } from "./InputField"
 import { Checkbox } from "./Checkbox"
+import { Eye, EyeOff } from "lucide-react"
+
+
 
 interface IFormDataProps {
     data: IFormData
     }
 export const Form = ({ data } : IFormDataProps):ReactElement => {
-
-   const [formData, setFormData]= useState<IFormData>({...data,term:false})
+ const [password,setPassword]=useState(false);
+ const [formData, setFormData]= useState<IFormData>({...data,term:false})
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         if(formData.password !== formData.confirmPassword) {
@@ -26,6 +29,10 @@ export const Form = ({ data } : IFormDataProps):ReactElement => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name,type, value} = e.target
         setFormData({...formData, [name]: type==="checkbox" ? e.target.checked : value})
+    }
+    const handlePasswordToggle = () => {
+        setPassword(prev=>!prev)
+    
     }
 
   return (
@@ -62,9 +69,10 @@ export const Form = ({ data } : IFormDataProps):ReactElement => {
     onChange:handleChange,
     id:"email"
 }} />
+<div className="password-wrapper">
 <InputField field={{
     label:"Password",
-    type:"password",
+    type: password?"text":"password",
     name:"password",
     placeholder:"Enter password...",
     value:formData.password,
@@ -72,6 +80,9 @@ export const Form = ({ data } : IFormDataProps):ReactElement => {
     onChange:handleChange,
     id:"password"
 }} />
+<button className="eye-button" onClick={() => handlePasswordToggle()}>
+  {password === false ? <EyeOff /> : <Eye />}</button>
+</div>
 <InputField field={{
     label:"Confirm password",
     type:"password",
