@@ -2,26 +2,30 @@ import { useState, type ReactElement } from "react"
 import type { IFormData } from "../type"
 import '../css/Form.css'
 import { InputField } from "./InputField"
+import { Checkbox } from "./Checkbox"
 
 interface IFormDataProps {
     data: IFormData
     }
 export const Form = ({ data } : IFormDataProps):ReactElement => {
 
-   const [formData, setFormData]= useState<IFormData>(data)
+   const [formData, setFormData]= useState<IFormData>({...data,term:false})
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         if(formData.password !== formData.confirmPassword) {
             alert("Passwords do not match") 
             return
         }
+        if(!formData.term){
+            alert("You must agree to the terms and conditions")
+        }
         console.log(formData)
         alert("Form submitted successfully!")
-    setFormData(data)
+        setFormData({...data,term:false})
     }
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target
-        setFormData({...formData, [name]: value})
+        const {name,type, value} = e.target
+        setFormData({...formData, [name]: type==="checkbox" ? e.target.checked : value})
     }
 
   return (
@@ -76,8 +80,9 @@ export const Form = ({ data } : IFormDataProps):ReactElement => {
     value:formData.confirmPassword,  
     required:true,
     onChange:handleChange,
-    id:"conformPassword"
+    id:"confirmPassword"
 }} />
+<Checkbox box={formData} onChange={(e) => setFormData({...formData, term: e.target.checked})} />
       <button type="submit">Register</button>
     </form>
     </div>

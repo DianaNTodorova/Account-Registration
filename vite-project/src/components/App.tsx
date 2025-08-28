@@ -11,7 +11,7 @@ function App() {
 lastName:"",
 email:"",
 password:"",
-confirmPassword:""}} />
+confirmPassword:"",term:false}} />
     </>
   )
 }

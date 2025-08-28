@@ -4,6 +4,7 @@ lastName: string
 email: string
 password: string 
 confirmPassword: string 
+term:boolean
 }
 
 export interface IInputField {
